@@ -121,11 +121,10 @@ function checkRequiredProperties(options, requiredPropsArray) {
     return Promise.resolve()
 }
 
+
 //
 // Public Functions
 //
-
-
 module.exports.GetInverterRealtimeData = function (options) {
     var opts = _.clone(options);
     return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
@@ -137,13 +136,12 @@ module.exports.GetInverterRealtimeData = function (options) {
     })
 };
 
-// GetComponentsData is provided to use an undocumented API service provided by the data logger
-// of the Symo inverters. See https://forum.fhem.de/index.php/topic,24614.msg214011.html#msg214011
-module.exports.GetComponentsData = function (options) {
+module.exports.GetInverterInfo = function (options) {
     var opts = _.clone(options);
-    return checkRequiredProperties(opts, ['host']).then(function () {
+    opts.scope = "Device";
+    return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
-            return getRequest(opts, '/components/5/0/?print=names').then(function (json) {
+            return getRequest(opts, '/solar_api/v1/GetInverterInfo.fcgi').then(function (json) {
                 return Promise.resolve(json);
             })
         })
@@ -161,12 +159,36 @@ module.exports.GetPowerFlowRealtimeDataData = function (options) {
     })
 };
 
-module.exports.GetPowerMeterRealtimeData = function (options) {
+module.exports.GetActiveDeviceInfo = function (options) {
     var opts = _.clone(options);
     opts.scope = "Device";
     return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
-            return getRequest(opts, '/solar_api/v1/GetPowerMeterRealtimeData.fcgi').then(function (json) {
+            return getRequest(opts, '/solar_api/v1/GetActiveDeviceInfo.cgi').then(function (json) {
+                return Promise.resolve(json);
+            })
+        })
+    })
+};
+
+module.exports.GetMeterRealtimeData = function (options) {
+    var opts = _.clone(options);
+    opts.scope = "Device";
+    return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
+        return lastRequest = settlePromise(lastRequest).then(function () {
+            return getRequest(opts, '/solar_api/v1/GetMeterRealtimeData.cgi').then(function (json) {
+                return Promise.resolve(json);
+            })
+        })
+    })
+};
+
+module.exports.GetOhmpilotRealtimeData = function (options) {
+    var opts = _.clone(options);
+    opts.scope = "Device";
+    return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
+        return lastRequest = settlePromise(lastRequest).then(function () {
+            return getRequest(opts, '/solar_api/v1/GetOhmpilotRealtimeData.cgi').then(function (json) {
                 return Promise.resolve(json);
             })
         })
@@ -178,9 +200,25 @@ module.exports.GetStorageRealtimeData = function (options) {
     opts.scope = "Device";
     return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
-            return getRequest(opts, '/solar_api/v1/GetStorageRealtimeData.fcgi').then(function (json) {
+            return getRequest(opts, '/solar_api/v1/GetStorageRealtimeData.cgi').then(function (json) {
                 return Promise.resolve(json);
             })
         })
     })
 };
+
+// GetComponentsData is provided to use an undocumented API service provided by the data logger
+// of the Symo inverters. See https://forum.fhem.de/index.php/topic,24614.msg214011.html#msg214011
+// Not existing on Symo GEN24 10.0!!
+module.exports.GetComponentsData = function (options) {
+    var opts = _.clone(options);
+    return checkRequiredProperties(opts, ['host']).then(function () {
+        return lastRequest = settlePromise(lastRequest).then(function () {
+            return getRequest(opts, '/components/5/0/?print=names').then(function (json) {
+                return Promise.resolve(json);
+            })
+
+};
+
+
+
