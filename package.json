@@ -1,5 +1,5 @@
 {
-  "name": "node-fronius-solar",
+  "name": "node-fronius-solar-bee-eater",
   "version": "0.1.00",
   "description": "Access PV live logs using the Fronius Solar API",
   "author": {
