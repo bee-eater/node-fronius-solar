@@ -140,7 +140,7 @@ module.exports.GetInverterInfo = function (options) {
     var opts = _.clone(options);
     return checkRequiredProperties(opts, ['host']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
-            return getRequest(opts, '/solar_api/v1/GetInverterInfo.fcgi').then(function (json) {
+            return getRequest(opts, '/solar_api/v1/GetInverterInfo.cgi').then(function (json) {
                 return Promise.resolve(json);
             })
         })
