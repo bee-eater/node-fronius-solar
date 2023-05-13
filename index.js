@@ -138,8 +138,7 @@ module.exports.GetInverterRealtimeData = function (options) {
 
 module.exports.GetInverterInfo = function (options) {
     var opts = _.clone(options);
-    opts.scope = "Device";
-    return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
+    return checkRequiredProperties(opts, ['host']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
             return getRequest(opts, '/solar_api/v1/GetInverterInfo.fcgi').then(function (json) {
                 return Promise.resolve(json);
@@ -161,8 +160,7 @@ module.exports.GetPowerFlowRealtimeDataData = function (options) {
 
 module.exports.GetActiveDeviceInfo = function (options) {
     var opts = _.clone(options);
-    opts.scope = "Device";
-    return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
+    return checkRequiredProperties(opts, ['host']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
             return getRequest(opts, '/solar_api/v1/GetActiveDeviceInfo.cgi').then(function (json) {
                 return Promise.resolve(json);
@@ -173,8 +171,7 @@ module.exports.GetActiveDeviceInfo = function (options) {
 
 module.exports.GetMeterRealtimeData = function (options) {
     var opts = _.clone(options);
-    opts.scope = "Device";
-    return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
+    return checkRequiredProperties(opts, ['host']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
             return getRequest(opts, '/solar_api/v1/GetMeterRealtimeData.cgi').then(function (json) {
                 return Promise.resolve(json);
@@ -185,8 +182,7 @@ module.exports.GetMeterRealtimeData = function (options) {
 
 module.exports.GetOhmpilotRealtimeData = function (options) {
     var opts = _.clone(options);
-    opts.scope = "Device";
-    return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
+    return checkRequiredProperties(opts, ['host']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
             return getRequest(opts, '/solar_api/v1/GetOhmpilotRealtimeData.cgi').then(function (json) {
                 return Promise.resolve(json);
@@ -197,8 +193,7 @@ module.exports.GetOhmpilotRealtimeData = function (options) {
 
 module.exports.GetStorageRealtimeData = function (options) {
     var opts = _.clone(options);
-    opts.scope = "Device";
-    return checkRequiredProperties(opts, ['host', 'deviceId']).then(function () {
+    return checkRequiredProperties(opts, ['host']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
             return getRequest(opts, '/solar_api/v1/GetStorageRealtimeData.cgi').then(function (json) {
                 return Promise.resolve(json);
@@ -217,7 +212,8 @@ module.exports.GetComponentsData = function (options) {
             return getRequest(opts, '/components/5/0/?print=names').then(function (json) {
                 return Promise.resolve(json);
             })
-
+        })
+    })
 };
 
 
