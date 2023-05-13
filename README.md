@@ -41,7 +41,7 @@ Access PV live logs using the Fronius Solar API V0 and V1.
     }).catch(function(e) {console.log(e)});
     
     // This is a Solar API V1 call which should work with Fronius Data Manager v3.4.2-1 (and higher)
-    fronius.GetPowerFlowRealtimeDataData(options).then(function (json) {
+    fronius.GetPowerFlowRealtimeData(options).then(function (json) {
         console.log(util.inspect(json, { depth: 4, colors : true }));
         console.log(Date.now() - x, "milliseconds elapsed")
     }).catch(function(e) {console.log(e)});

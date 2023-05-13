@@ -25,7 +25,7 @@
 * 20160330, V0.0.6
     * Added HTTP-Digest Authentication as required for GetComponentsData if authentication has been enabled 
       for Fronius Data Manager
-    * Added GetPowerFlowRealtimeDataData() Solar API V1 service call
+    * Added GetPowerFlowRealtimeData() Solar API V1 service call
     * Moved release history to separate file
     * Added license info to README
 

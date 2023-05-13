@@ -147,7 +147,7 @@ module.exports.GetInverterInfo = function (options) {
     })
 };
 
-module.exports.GetPowerFlowRealtimeDataData = function (options) {
+module.exports.GetPowerFlowRealtimeData = function (options) {
     var opts = _.clone(options);
     return checkRequiredProperties(opts, ['host']).then(function () {
         return lastRequest = settlePromise(lastRequest).then(function () {
